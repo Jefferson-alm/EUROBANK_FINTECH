@@ -1,5 +1,6 @@
 package org.example;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,17 +13,17 @@ public class Cliente {
     String apellido_cliente;
     String telefono_cliente;
     String correo_electronico;
-    String fecha_creacion;
+    LocalDate fecha_creacion;
     String nro_cuenta_cliente;
     String cci_cliente;
 
-    ArrayList<Cliente> listaClientes = new ArrayList<>();
+    GestionarClientes lista_clientes = new GestionarClientes();
 
     public Cliente() {
 
     }
 
-    public Cliente(String dni_cliente, String nombre_cliente, String apellido_cliente, String telefono_cliente, String correo_electronico, String fecha_creacion, String nro_cuenta_cliente, String cci_cliente) {
+    public Cliente(String dni_cliente, String nombre_cliente, String apellido_cliente, String telefono_cliente, String correo_electronico, LocalDate fecha_creacion, String nro_cuenta_cliente, String cci_cliente) {
         this.dni_cliente = dni_cliente;
         this.nombre_cliente = nombre_cliente;
         this.apellido_cliente = apellido_cliente;
@@ -33,52 +34,91 @@ public class Cliente {
         this.cci_cliente = cci_cliente;
     }
 
-    public Cliente CrearCliente() {
-        System.out.println("Crear cliente");
-        System.out.println("DNI: ");
-        String dni_cliente = sc.next();
-        System.out.println("Nombre: ");
-        String nombre_cliente = sc.next();
-        System.out.println("Apellido: ");
-        String apellido_cliente = sc.next();
-        System.out.println("Telefono: ");
-        String telefono_cliente = sc.next();
-        System.out.println("Correo Electronico: ");
-        String correo_electronico = sc.next();
-        System.out.println("Fecha de Creacion: ");
-        String fecha_creacion = sc.next();
-        System.out.println("Nro Cuenta: ");
-        String nro_cuenta_cliente = sc.next();
-        System.out.println("CCI: ");
-        String cci_cliente = sc.next();
-
-        Cliente cliente = new Cliente(dni_cliente, nombre_cliente, apellido_cliente, telefono_cliente, correo_electronico, fecha_creacion, nro_cuenta_cliente, cci_cliente);
-
-        listaClientes.add(cliente);
-        return cliente;
+    public Scanner getSc() {
+        return sc;
     }
 
-    public void mostrarClientes(ArrayList<Cliente> clientes) {
+    public void setSc(Scanner sc) {
+        this.sc = sc;
+    }
 
-        for (Cliente cliente : clientes) {
-            System.out.println(cliente.toString());
-        }
+    public String getDni_cliente() {
+        return dni_cliente;
+    }
+
+    public void setDni_cliente(String dni_cliente) {
+        this.dni_cliente = dni_cliente;
+    }
+
+    public String getNombre_cliente() {
+        return nombre_cliente;
+    }
+
+    public void setNombre_cliente(String nombre_cliente) {
+        this.nombre_cliente = nombre_cliente;
+    }
+
+    public String getApellido_cliente() {
+        return apellido_cliente;
+    }
+
+    public void setApellido_cliente(String apellido_cliente) {
+        this.apellido_cliente = apellido_cliente;
+    }
+
+    public String getTelefono_cliente() {
+        return telefono_cliente;
+    }
+
+    public void setTelefono_cliente(String telefono_cliente) {
+        this.telefono_cliente = telefono_cliente;
+    }
+
+    public String getCorreo_electronico() {
+        return correo_electronico;
+    }
+
+    public void setCorreo_electronico(String correo_electronico) {
+        this.correo_electronico = correo_electronico;
+    }
+
+    public LocalDate getFecha_creacion() {
+        return fecha_creacion;
+    }
+
+    public void setFecha_creacion(LocalDate fecha_creacion) {
+        this.fecha_creacion = fecha_creacion;
+    }
+
+    public String getNro_cuenta_cliente() {
+        return nro_cuenta_cliente;
+    }
+
+    public void setNro_cuenta_cliente(String nro_cuenta_cliente) {
+        this.nro_cuenta_cliente = nro_cuenta_cliente;
+    }
+
+    public String getCci_cliente() {
+        return cci_cliente;
+    }
+
+    public void setCci_cliente(String cci_cliente) {
+        this.cci_cliente = cci_cliente;
+
     }
 
     @Override
     public String toString(){
         return "Cliente{" +
-                "DNI='" + dni_cliente + '\'' +
-                ", Nombre='" + nombre_cliente + '\'' +
-                ", Apellido='" + apellido_cliente + '\'' +
-                ", Telefono='" + telefono_cliente + '\'' +
-                ", Correo='" + correo_electronico + '\'' +
-                ", Fecha de Creacion='" + fecha_creacion + '\'' +
-                ", Nro Cuenta='" + nro_cuenta_cliente + '\'' +
-                ", CCI='" + cci_cliente + '\'' +
+                "DNI='" + lista_clientes.lista_clientes.get(1).dni_cliente+ '\n' +
+                ", Nombre='" + nombre_cliente + '\n' +
+                ", Apellido='" + apellido_cliente + '\n' +
+                ", Telefono='" + telefono_cliente + '\n' +
+                ", Correo='" + correo_electronico + '\n' +
+                ", Fecha de Creacion='" + fecha_creacion + '\n' +
+                ", Nro Cuenta='" + nro_cuenta_cliente + '\n' +
+                ", CCI='" + cci_cliente + '\n' +
                 '}';
     }
-
-
 
 }

@@ -10,6 +10,8 @@ public class Main {
 
         ArrayList<Cliente> clientes = new ArrayList<>();
 
+        GestionarClientes metodos_cliente = new GestionarClientes();
+
         Scanner sc = new Scanner(System.in);
 
         Cliente newCliente = new Cliente();
@@ -39,12 +41,11 @@ public class Main {
             opcion = sc.nextInt();
             switch(opcion){
                 case 1:
-                    newCliente.CrearCliente();
+                    metodos_cliente.crear_cliente();
 
                     break;
                 case 2 :
-                    newCliente.mostrarClientes(clientes);
-                    System.out.println(newCliente);
+                    System.out.println(newCliente.toString());
                     break;
                 case 3:
                     System.out.println("Crear cliente");
