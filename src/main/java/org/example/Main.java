@@ -45,6 +45,7 @@ public class Main {
 
                     break;
                 case 2 :
+                    System.out.println("Mostrar mi cuenta");
                     System.out.println(newCliente.toString());
                     break;
                 case 3:

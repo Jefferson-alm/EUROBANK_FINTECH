@@ -107,18 +107,4 @@ public class Cliente {
 
     }
 
-    @Override
-    public String toString(){
-        return "Cliente{" +
-                "DNI='" + lista_clientes.lista_clientes.get(1).dni_cliente+ '\n' +
-                ", Nombre='" + nombre_cliente + '\n' +
-                ", Apellido='" + apellido_cliente + '\n' +
-                ", Telefono='" + telefono_cliente + '\n' +
-                ", Correo='" + correo_electronico + '\n' +
-                ", Fecha de Creacion='" + fecha_creacion + '\n' +
-                ", Nro Cuenta='" + nro_cuenta_cliente + '\n' +
-                ", CCI='" + cci_cliente + '\n' +
-                '}';
-    }
-
 }
