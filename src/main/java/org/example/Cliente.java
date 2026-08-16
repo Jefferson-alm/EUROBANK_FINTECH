@@ -1,31 +1,40 @@
 package org.example;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Cliente {
 
-    String dni_cliente;
-    String nombre_cliente;
-    String apellido_cliente;
-    String telefono_cliente;
-    String correo_electronico;
-    LocalDate fecha_creacion;
-    String nro_cuenta_cliente;
-    String cci_cliente;
+    private Cuenta cuenta;
+
+    private String dni_cliente;
+    private String nombre_cliente;
+    private String apellido_cliente;
+    private String telefono_cliente;
+    private String correo_electronico;
+    private LocalDateTime fecha_creacion;
+
 
     public Cliente() {
 
     }
 
-    public Cliente(String dni_cliente, String nombre_cliente, String apellido_cliente, String telefono_cliente, String correo_electronico, LocalDate fecha_creacion, String nro_cuenta_cliente, String cci_cliente) {
+    public Cliente(String dni_cliente, String nombre_cliente, String apellido_cliente, String telefono_cliente, String correo_electronico, LocalDateTime fecha_creacion) {
         this.dni_cliente = dni_cliente;
         this.nombre_cliente = nombre_cliente;
         this.apellido_cliente = apellido_cliente;
         this.telefono_cliente = telefono_cliente;
         this.correo_electronico = correo_electronico;
         this.fecha_creacion = fecha_creacion;
-        this.nro_cuenta_cliente = nro_cuenta_cliente;
-        this.cci_cliente = cci_cliente;
+    }
+
+    public Cliente(String dni_cliente, String nombre_cliente, String apellido_cliente, String telefono_cliente, String correo_electronico, LocalDateTime fecha_creacion, Cuenta cuenta) {
+        this.dni_cliente = dni_cliente;
+        this.nombre_cliente = nombre_cliente;
+        this.apellido_cliente = apellido_cliente;
+        this.telefono_cliente = telefono_cliente;
+        this.correo_electronico = correo_electronico;
+        this.fecha_creacion = fecha_creacion;
+        this.cuenta = cuenta;
     }
 
     public String getDni_cliente() {
@@ -68,42 +77,32 @@ public class Cliente {
         this.correo_electronico = correo_electronico;
     }
 
-    public LocalDate getFecha_creacion() {
+    public LocalDateTime getFecha_creacion() {
         return fecha_creacion;
     }
 
-    public void setFecha_creacion(LocalDate fecha_creacion) {
+    public void setFecha_creacion(LocalDateTime fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
     }
 
-    public String getNro_cuenta_cliente() {
-        return nro_cuenta_cliente;
+    public Cuenta getCuenta() {
+        return cuenta;
     }
 
-    public void setNro_cuenta_cliente(String nro_cuenta_cliente) {
-        this.nro_cuenta_cliente = nro_cuenta_cliente;
-    }
-
-    public String getCci_cliente() {
-        return cci_cliente;
-    }
-
-    public void setCci_cliente(String cci_cliente) {
-        this.cci_cliente = cci_cliente;
-
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
     }
 
     @Override
     public String toString() {
-        return "Cliente{\n" +
-                "\t" +"DNI: " + dni_cliente + '\n' +
-                "\t" +"NOMBRE: " + nombre_cliente + '\n' +
-                "\t" +"APELLIDOS: " + apellido_cliente + '\n' +
-                "\t" +"TELEFONO: " + telefono_cliente + '\n' +
-                "\t" +"CORREO: " + correo_electronico + '\n' +
-                "\t" +"FECHA CREACION" + fecha_creacion + '\n' +
-                "\t" +"NRO DE CUENTA: " + nro_cuenta_cliente + '\n' +
-                "\t" +"CCI: " + cci_cliente + '\n' +
-                '}';
+        return "\nCliente\n" +
+                "\tDNI: " + dni_cliente + "\n" +
+                "\tNOMBRE: " + nombre_cliente + "\n" +
+                "\tAPELLIDO: " + apellido_cliente + "\n" +
+                "\tTELEFONO: " + telefono_cliente + "\n" +
+                "\tCORREO ELECTRONICO: " + correo_electronico + "\n" +
+                "\tFECHA CREACION: " + fecha_creacion + "\n" +
+                "\tCuenta: " + cuenta +"\n"
+                ;
     }
 }

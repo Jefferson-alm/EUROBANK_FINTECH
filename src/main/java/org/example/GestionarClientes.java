@@ -1,63 +1,186 @@
 package org.example;
 
+import java.net.StandardSocketOptions;
 import java.security.SecureRandom;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GestionarClientes {
 
     Scanner sc = new Scanner(System.in);
+    ArrayList<Cliente> listaClientes = new ArrayList<>();
+    Cliente nuevo_cliente;
 
-    String codigo_mi_pais = "51";
-    String codigo_mi_banco = "9876";
-    String codigo_mi_pais_internacional = "123456";
+    String cod_country = "1234";
+    String cod_bank = "9876";
+    String cod_international = "000456";
 
-    ArrayList<Cliente> lista_clientes = new ArrayList<>();
-    Cliente cliente;
-
-    public Cliente crear_cliente(){
-
-        System.out.println("Crear Cliente");
+    public Cliente create_customer(){
 
         System.out.println("DNI: ");
-        String dni_cliente = sc.next();
+        String dni_cliente= sc.next();
 
         System.out.println("Nombre: ");
-        String nombre_cliente = sc.next();
+        String nombre_liente  = sc.next();
 
-        System.out.println("Apellidos: ");
+        System.out.println("Apellido: ");
         String apellido_cliente = sc.next();
 
         System.out.println("Telefono: ");
         String telefono_cliente = sc.next();
 
-        System.out.println("Correo Electronico: ");
-        String correo_cliente = sc.next();
+        System.out.println("Correo Electornico: ");
+        String correo_cliente= sc.next();
 
+        LocalDateTime fecha_creacion_cliente = LocalDateTime.now();
+        System.out.println("Fecha Creacion: " + fecha_creacion_cliente);
 
-        LocalDate fecha_creacion = LocalDate.now();
-        System.out.println("Fecha Creacion: " + fecha_creacion);
+        nuevo_cliente = new Cliente(dni_cliente, nombre_liente, apellido_cliente, telefono_cliente, correo_cliente, fecha_creacion_cliente);
 
-        SecureRandom r = new SecureRandom();
+        listaClientes.add(nuevo_cliente);
 
-        String cuenta_cliente = codigo_mi_pais + " - " + codigo_mi_banco + " - " +r.nextInt(1000);
-        System.out.println("Nro de Cuenta: "+ cuenta_cliente);
+        return nuevo_cliente;
 
-        String cci_cliente = codigo_mi_pais_internacional + " - "  + codigo_mi_pais + " - " + codigo_mi_banco + " - "  + r.nextInt(1000);
-        System.out.println("CCI: " + cci_cliente);
+    }
 
-        cliente = new Cliente(dni_cliente, nombre_cliente, apellido_cliente, telefono_cliente, correo_cliente, fecha_creacion, cuenta_cliente, cci_cliente);
+    public Cliente update_customer(){
 
-        lista_clientes.add(cliente);
+        System.out.println("BUSCAR POR DNI: ");
+        String buscar_dni = sc.next();
+        int posicion = 0;
+        for (Cliente clientes:listaClientes){
+            if(clientes.getDni_cliente().equals(buscar_dni)) {
+                System.out.println("DNI ENCONTRADO LISTO PARA MODIFICAR");
+                int opcion;
+                do{
+                    System.out.println("[1] MODIFICAR NOMBRE: ");
+                    System.out.println("[2] MODIFICAR APELLIDO: ");
+                    System.out.println("[3] MODIFICAR TELEFONO: ");
+                    System.out.println("[4] MODIFICAR CORREO: ");
+                    System.out.println("[5] SALIR: ");
+                    System.out.print("Elige Opcion: ");
+                    opcion = sc.nextInt();
+                    switch (opcion) {
+                        case 1:
+                            System.out.println("Nuevo Nombre: ");
+                            String update_nombre = sc.next();
+                            listaClientes.get(posicion).setNombre_cliente(update_nombre);
+                            System.out.println(listaClientes.get(posicion));
 
-        return cliente;
+                            break;
+                        case 2:
+                            System.out.println("Nuevo Apellido: ");
+                            String update_surname = sc.next();
+                            listaClientes.get(posicion).setApellido_cliente(update_surname);
+                            System.out.println(listaClientes.get(posicion));
 
+                            break;
+                        case 3:
+                            System.out.println("Nuevo Telefono: ");
+                            String update_phone = sc.next();
+                            listaClientes.get(posicion).setTelefono_cliente(update_phone);
+                            System.out.println(listaClientes.get(posicion));
+
+                            break;
+                        case 4:
+                            System.out.println("Nuevo Correo: ");
+                            String update_mail = sc.next();
+                            listaClientes.get(posicion).setCorreo_electronico(update_mail);
+                            System.out.println(listaClientes.get(posicion));
+
+                            break;
+                        case 5:
+                            break;
+                        default:
+                            break;
+                    }
+                }while(opcion != 5);
+                System.out.println("---------ACTUALIZADO");
+
+            }else{
+                posicion++;
+            }
+        }
+
+        return nuevo_cliente;
+
+    }
+
+    public Cliente delete_customer(){
+
+        System.out.println("ELIMINAR CLIENTE");
+        System.out.println("DNI: ");
+        String update_dni = sc.next();
+        int position = 0;
+        boolean encontrado = false;
+        for (Cliente cliente:listaClientes){
+            if(cliente.getDni_cliente().equals(update_dni)){
+                encontrado = true;
+            }
+            if(encontrado){
+                listaClientes.remove(position);
+                System.out.println("CLIENTE ELIMINADO");
+                break;
+            }else{
+                System.out.println("NO SE ENCONTRO EL CLIENTE");
+            }
+            position++;
+            encontrado = false;
+        }
+
+        return nuevo_cliente;
+    }
+
+    public Cliente create_account(){
+        //primero busco cliente
+        //luego en ese cliente agrego la cuenta y el cci
+
+        System.out.println("Buscar Cliente");
+        System.out.print("DNI: ");
+        String search_dni = sc.next();
+
+        int position = 0;
+        boolean encontrado = false;
+        for(Cliente cliente: listaClientes){
+            if(listaClientes.get(position).getDni_cliente().equals(search_dni)){
+                encontrado = true;
+            }
+
+            if(encontrado){
+                System.out.println("CLIENTE ENCONTRADO");
+                SecureRandom r = new SecureRandom();
+
+                String nro_account_customer = cod_country + "-" + cod_bank + "-" + r.nextInt(1000);
+                String cci_account_customer = cod_international + "-" + cod_country + "-" + cod_bank + "-" + r.nextInt(1000);
+
+                Cuenta cuenta = new Cuenta(nro_account_customer, cci_account_customer);
+
+                cliente.setCuenta(cuenta);
+
+                System.out.println("CUENTA CREADA");
+                System.out.println(cliente);
+                break;
+
+            }else {
+                position++;
+                encontrado = false;
+            }
+
+        }
+        if (!encontrado){
+            System.out.println("NO EXISTE EL CLIENTE");
+        }
+        return nuevo_cliente;
     }
 
     @Override
     public String toString(){
-        return lista_clientes.toString();
+
+        return listaClientes.toString();
+
     }
+
 
 }

@@ -6,14 +6,14 @@ import java.util.Scanner;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    static void main() {
+    static void main(String[] args) {
 
 
         Scanner sc = new Scanner(System.in);
 
         GestionarClientes metodos_cliente = new GestionarClientes();
 
-        Cliente newCliente = null;
+        Cliente nuevo_cliente = null;
 
         System.out.println("BIENVENIDO A EUROBANK");
 
@@ -40,22 +40,32 @@ public class Main {
             opcion = sc.nextInt();
             switch(opcion){
                 case 1:
-                    System.out.println("Crear cliente");
-                    newCliente = metodos_cliente.crear_cliente();
-                    System.out.println(newCliente);
+
+                    System.out.println("Creando Cliente");
+                    nuevo_cliente = metodos_cliente.create_customer();
+                    System.out.println(nuevo_cliente);
+
                     break;
+
                 case 2 :
-                    System.out.println("Listar clientes");
-                    System.out.println(metodos_cliente.lista_clientes);
+                    System.out.println("MOSTRAR CLIENTE");
+                    System.out.println(metodos_cliente);
+
                     break;
+
                 case 3:
                     System.out.println("Modificar cliente");
+                    metodos_cliente.update_customer();
                     break;
+
                 case 4 :
                     System.out.println("Eliminar Cliente");
+                    metodos_cliente.delete_customer();
                     break;
                 case 5:
                     System.out.println("Crear Cuenta");
+                    metodos_cliente.create_account();
+
                     break;
                 case 6 :
                     System.out.println("Depositar Dinero");
