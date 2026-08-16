@@ -1,12 +1,8 @@
 package org.example;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Cliente {
-
-    Scanner sc = new Scanner(System.in);
 
     String dni_cliente;
     String nombre_cliente;
@@ -16,8 +12,6 @@ public class Cliente {
     LocalDate fecha_creacion;
     String nro_cuenta_cliente;
     String cci_cliente;
-
-    GestionarClientes lista_clientes = new GestionarClientes();
 
     public Cliente() {
 
@@ -32,14 +26,6 @@ public class Cliente {
         this.fecha_creacion = fecha_creacion;
         this.nro_cuenta_cliente = nro_cuenta_cliente;
         this.cci_cliente = cci_cliente;
-    }
-
-    public Scanner getSc() {
-        return sc;
-    }
-
-    public void setSc(Scanner sc) {
-        this.sc = sc;
     }
 
     public String getDni_cliente() {
@@ -107,5 +93,17 @@ public class Cliente {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "Cliente{\n" +
+                "\t" +"DNI: " + dni_cliente + '\n' +
+                "\t" +"NOMBRE: " + nombre_cliente + '\n' +
+                "\t" +"APELLIDOS: " + apellido_cliente + '\n' +
+                "\t" +"TELEFONO: " + telefono_cliente + '\n' +
+                "\t" +"CORREO: " + correo_electronico + '\n' +
+                "\t" +"FECHA CREACION" + fecha_creacion + '\n' +
+                "\t" +"NRO DE CUENTA: " + nro_cuenta_cliente + '\n' +
+                "\t" +"CCI: " + cci_cliente + '\n' +
+                '}';
+    }
 }

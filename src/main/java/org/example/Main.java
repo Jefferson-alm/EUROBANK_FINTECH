@@ -8,13 +8,12 @@ import java.util.Scanner;
 public class Main {
     static void main() {
 
-        ArrayList<Cliente> clientes = new ArrayList<>();
-
-        GestionarClientes metodos_cliente = new GestionarClientes();
 
         Scanner sc = new Scanner(System.in);
 
-        Cliente newCliente = new Cliente();
+        GestionarClientes metodos_cliente = new GestionarClientes();
+
+        Cliente newCliente = null;
 
         System.out.println("BIENVENIDO A EUROBANK");
 
@@ -41,21 +40,22 @@ public class Main {
             opcion = sc.nextInt();
             switch(opcion){
                 case 1:
-                    metodos_cliente.crear_cliente();
-
+                    System.out.println("Crear cliente");
+                    newCliente = metodos_cliente.crear_cliente();
+                    System.out.println(newCliente);
                     break;
                 case 2 :
-                    System.out.println("Mostrar mi cuenta");
-                    System.out.println(newCliente.toString());
+                    System.out.println("Listar clientes");
+                    System.out.println(metodos_cliente.lista_clientes);
                     break;
                 case 3:
-                    System.out.println("Crear cliente");
+                    System.out.println("Modificar cliente");
                     break;
                 case 4 :
-                    System.out.println("Hola mundo");
+                    System.out.println("Eliminar Cliente");
                     break;
                 case 5:
-                    System.out.println("Crear cliente");
+                    System.out.println("Crear Cuenta");
                     break;
                 case 6 :
                     System.out.println("Depositar Dinero");
@@ -80,7 +80,7 @@ public class Main {
                     System.out.println("Opcion Erronea");
                     break;
             }
-
+            System.out.println("\n");
         }while(opcion != 11);
 
     }

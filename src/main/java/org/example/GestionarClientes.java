@@ -1,22 +1,20 @@
 package org.example;
 
 import java.security.SecureRandom;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class GestionarClientes {
 
     Scanner sc = new Scanner(System.in);
 
-
     String codigo_mi_pais = "51";
     String codigo_mi_banco = "9876";
     String codigo_mi_pais_internacional = "123456";
 
     ArrayList<Cliente> lista_clientes = new ArrayList<>();
+    Cliente cliente;
 
     public Cliente crear_cliente(){
 
@@ -49,7 +47,7 @@ public class GestionarClientes {
         String cci_cliente = codigo_mi_pais_internacional + " - "  + codigo_mi_pais + " - " + codigo_mi_banco + " - "  + r.nextInt(1000);
         System.out.println("CCI: " + cci_cliente);
 
-        Cliente cliente = new Cliente(dni_cliente, nombre_cliente, apellido_cliente, telefono_cliente, correo_cliente, fecha_creacion, cuenta_cliente, cci_cliente);
+        cliente = new Cliente(dni_cliente, nombre_cliente, apellido_cliente, telefono_cliente, correo_cliente, fecha_creacion, cuenta_cliente, cci_cliente);
 
         lista_clientes.add(cliente);
 
@@ -57,5 +55,9 @@ public class GestionarClientes {
 
     }
 
+    @Override
+    public String toString(){
+        return lista_clientes.toString();
+    }
 
 }
