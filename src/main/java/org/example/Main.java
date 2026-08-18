@@ -57,7 +57,6 @@ public class Main {
                     System.out.println("Modificar cliente");
                     metodos_cliente.update_customer();
                     break;
-
                 case 4 :
                     System.out.println("Eliminar Cliente");
                     metodos_cliente.delete_customer();
@@ -69,9 +68,13 @@ public class Main {
                     break;
                 case 6 :
                     System.out.println("Depositar Dinero");
+                    metodos_cliente.deposit_cash();
+
                     break;
                 case 7:
                     System.out.println("Retirar Dinero");
+                    metodos_cliente.withdraw_money();
+
                     break;
                 case 8 :
                     System.out.println("Consultar Saldo");

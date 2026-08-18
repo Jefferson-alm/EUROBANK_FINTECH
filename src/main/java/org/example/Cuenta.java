@@ -4,12 +4,15 @@ public class Cuenta {
 
     private String nro_cuenta;
     private String nro_cci;
+    private double saldo;
+
     public Cuenta() {
     }
 
-    public Cuenta(String nro_cuenta, String nro_cci) {
+    public Cuenta(String nro_cuenta, String nro_cci, double saldo) {
         this.nro_cuenta = nro_cuenta;
         this.nro_cci = nro_cci;
+        this.saldo = saldo;
     }
 
     public String getNro_cuenta() {
@@ -28,9 +31,18 @@ public class Cuenta {
         this.nro_cci = nro_cci;
     }
 
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
     @Override
     public String toString() {
-        return "\n\t\tnro_cuenta: " + nro_cuenta +
-                "\n\t\tnro_cci: " + nro_cci;
+        return "\n\t\tNro Cuenta: " + nro_cuenta +
+                "\n\t\tCCI: " + nro_cci +
+                "\n\t\tSaldo: " + saldo;
     }
 }

@@ -12,28 +12,31 @@ public class Cliente {
     private String telefono_cliente;
     private String correo_electronico;
     private LocalDateTime fecha_creacion;
+    private String password;
 
 
     public Cliente() {
 
     }
 
-    public Cliente(String dni_cliente, String nombre_cliente, String apellido_cliente, String telefono_cliente, String correo_electronico, LocalDateTime fecha_creacion) {
+    public Cliente(String dni_cliente, String nombre_cliente, String apellido_cliente, String telefono_cliente, String correo_electronico, LocalDateTime fecha_creacion, String password) {
         this.dni_cliente = dni_cliente;
         this.nombre_cliente = nombre_cliente;
         this.apellido_cliente = apellido_cliente;
         this.telefono_cliente = telefono_cliente;
         this.correo_electronico = correo_electronico;
         this.fecha_creacion = fecha_creacion;
+        this.password = password;
     }
 
-    public Cliente(String dni_cliente, String nombre_cliente, String apellido_cliente, String telefono_cliente, String correo_electronico, LocalDateTime fecha_creacion, Cuenta cuenta) {
+    public Cliente(String dni_cliente, String nombre_cliente, String apellido_cliente, String telefono_cliente, String correo_electronico, LocalDateTime fecha_creacion, String password, Cuenta cuenta) {
         this.dni_cliente = dni_cliente;
         this.nombre_cliente = nombre_cliente;
         this.apellido_cliente = apellido_cliente;
         this.telefono_cliente = telefono_cliente;
         this.correo_electronico = correo_electronico;
         this.fecha_creacion = fecha_creacion;
+        this.password = password;
         this.cuenta = cuenta;
     }
 

@@ -34,13 +34,14 @@ public class GestionarClientes {
         System.out.println("Correo Electornico: ");
         String correo_cliente= sc.next();
 
+        System.out.println("Correo Electornico: ");
+        String password= sc.next();
+
         LocalDateTime fecha_creacion_cliente = LocalDateTime.now();
         System.out.println("Fecha Creacion: " + fecha_creacion_cliente);
 
-        nuevo_cliente = new Cliente(dni_cliente, nombre_liente, apellido_cliente, telefono_cliente, correo_cliente, fecha_creacion_cliente);
-
+        nuevo_cliente = new Cliente(dni_cliente, nombre_liente, apellido_cliente, telefono_cliente, correo_cliente, fecha_creacion_cliente, password);
         listaClientes.add(nuevo_cliente);
-
         return nuevo_cliente;
 
     }
@@ -108,29 +109,21 @@ public class GestionarClientes {
 
     }
 
-    public Cliente delete_customer(){
+    public void delete_customer(){
 
         System.out.println("ELIMINAR CLIENTE");
         System.out.println("DNI: ");
-        String update_dni = sc.next();
-        int position = 0;
-        boolean encontrado = false;
-        for (Cliente cliente:listaClientes){
-            if(cliente.getDni_cliente().equals(update_dni)){
-                encontrado = true;
-            }
-            if(encontrado){
-                listaClientes.remove(position);
-                System.out.println("CLIENTE ELIMINADO");
-                break;
-            }else{
-                System.out.println("NO SE ENCONTRO EL CLIENTE");
-            }
-            position++;
-            encontrado = false;
-        }
+        String search_dni = sc.next();
 
-        return nuevo_cliente;
+        boolean eliminado = listaClientes.removeIf(
+                cliente -> cliente.getDni_cliente().equals(search_dni)
+        );
+
+        if (eliminado) {
+            System.out.println("CLIENTE ELIMINADO");
+        } else {
+            System.out.println("NO SE ENCONTRO EL CLIENTE");
+        }
     }
 
     public Cliente create_account(){
@@ -154,8 +147,8 @@ public class GestionarClientes {
 
                 String nro_account_customer = cod_country + "-" + cod_bank + "-" + r.nextInt(1000);
                 String cci_account_customer = cod_international + "-" + cod_country + "-" + cod_bank + "-" + r.nextInt(1000);
-
-                Cuenta cuenta = new Cuenta(nro_account_customer, cci_account_customer);
+                double balance = 10;
+                Cuenta cuenta = new Cuenta(nro_account_customer, cci_account_customer, balance);
 
                 cliente.setCuenta(cuenta);
 
@@ -174,6 +167,63 @@ public class GestionarClientes {
         }
         return nuevo_cliente;
     }
+
+
+    public void deposit_cash() {
+
+        System.out.println("Depostitar a cuenta: ");
+
+        System.out.println("Tipo de deposito: ");
+        System.out.println("[1] Mismo banco");
+        System.out.println("[2] Interbancario");
+        System.out.print("Opcion: ");
+        int opcion = sc.nextByte();
+
+        if(opcion == 1){
+            System.out.println("Ingresar Nro Cuenta: ");
+            String search_account = sc.next();
+            boolean account_found = false;
+
+            for(Cliente cliente: listaClientes){
+                if(cliente.getCuenta().getNro_cuenta().equals(search_account)){
+                    account_found = true;
+                    System.out.println("Cantidad a Depositar: ");
+                    double mount_deposit = sc.nextDouble();
+
+                    cliente.getCuenta().setSaldo(cliente.getCuenta().getSaldo()+ mount_deposit);
+
+                }
+                if(account_found){
+                    return;
+                }
+            }
+
+        }else{
+            System.out.println("Ingresar CCI: ");
+            String search_cci_account = sc.next();
+            boolean cci_account_found = false;
+
+            for(Cliente cliente: listaClientes){
+                if(cliente.getCuenta().getNro_cci().equals(search_cci_account)){
+                    cci_account_found = true;
+                    System.out.println("Cantidad a Depositar: ");
+                    double mount_deposit = sc.nextDouble();
+                    cliente.getCuenta().setSaldo(cliente.getCuenta().getSaldo()+ mount_deposit);
+                }
+                if(cci_account_found){
+                    return;
+                }
+            }
+        }
+    }
+
+    public void withdraw_money(){
+
+
+
+    }
+
+
 
     @Override
     public String toString(){
