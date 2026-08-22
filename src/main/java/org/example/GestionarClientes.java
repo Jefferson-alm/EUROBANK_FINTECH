@@ -34,13 +34,16 @@ public class GestionarClientes {
         System.out.println("Correo Electornico: ");
         String correo_cliente= sc.next();
 
-        System.out.println("Correo Electornico: ");
-        String password= sc.next();
+        System.out.println("Nombre Usuario: ");
+        String name_user = sc.next();
+
+        System.out.println("Password: ");
+        String password = sc.next();
 
         LocalDateTime fecha_creacion_cliente = LocalDateTime.now();
         System.out.println("Fecha Creacion: " + fecha_creacion_cliente);
 
-        nuevo_cliente = new Cliente(dni_cliente, nombre_liente, apellido_cliente, telefono_cliente, correo_cliente, fecha_creacion_cliente, password);
+        nuevo_cliente = new Cliente(dni_cliente, nombre_liente, apellido_cliente, telefono_cliente, correo_cliente, fecha_creacion_cliente, name_user, password);
         listaClientes.add(nuevo_cliente);
         return nuevo_cliente;
 
@@ -60,7 +63,8 @@ public class GestionarClientes {
                     System.out.println("[2] MODIFICAR APELLIDO: ");
                     System.out.println("[3] MODIFICAR TELEFONO: ");
                     System.out.println("[4] MODIFICAR CORREO: ");
-                    System.out.println("[5] SALIR: ");
+                    System.out.println("[5] MODIFICAR PASSWORD: ");
+                    System.out.println("[6] SALIR: ");
                     System.out.print("Elige Opcion: ");
                     opcion = sc.nextInt();
                     switch (opcion) {
@@ -92,12 +96,29 @@ public class GestionarClientes {
                             System.out.println(listaClientes.get(posicion));
 
                             break;
+
                         case 5:
+                            System.out.println("ACTUALIZAR PASSWORD");
+                            System.out.println("Password Actual: ");
+                            String verificar_password = sc.next();
+
+                            if(listaClientes.get(posicion).getPassword().equals(verificar_password)){
+                                System.out.println("Nuevo Password: ");
+                                String update_password = sc.next();
+                                listaClientes.get(posicion).setPassword(update_password);
+                                System.out.println(listaClientes.get(posicion));
+                                System.out.println("CONTRASEÑA ACTUALIZADA...");
+                            }else{
+                                System.out.println("CONTRASEÑA INCORRECTA");
+                            }
+
+                            break;
+                        case 6:
                             break;
                         default:
                             break;
                     }
-                }while(opcion != 5);
+                }while(opcion != 6);
                 System.out.println("---------ACTUALIZADO");
 
             }else{
@@ -219,6 +240,13 @@ public class GestionarClientes {
 
     public void withdraw_money(){
 
+        boolean existe = false;
+
+        for(Cliente cliente:listaClientes){
+
+
+
+        }
 
 
     }

@@ -12,6 +12,7 @@ public class Cliente {
     private String telefono_cliente;
     private String correo_electronico;
     private LocalDateTime fecha_creacion;
+    private String name_user;
     private String password;
 
 
@@ -19,13 +20,14 @@ public class Cliente {
 
     }
 
-    public Cliente(String dni_cliente, String nombre_cliente, String apellido_cliente, String telefono_cliente, String correo_electronico, LocalDateTime fecha_creacion, String password) {
+    public Cliente(String dni_cliente, String nombre_cliente, String apellido_cliente, String telefono_cliente, String correo_electronico, LocalDateTime fecha_creacion, String name_user ,String password) {
         this.dni_cliente = dni_cliente;
         this.nombre_cliente = nombre_cliente;
         this.apellido_cliente = apellido_cliente;
         this.telefono_cliente = telefono_cliente;
         this.correo_electronico = correo_electronico;
         this.fecha_creacion = fecha_creacion;
+        this.name_user = name_user;
         this.password = password;
     }
 
@@ -96,6 +98,22 @@ public class Cliente {
         this.cuenta = cuenta;
     }
 
+    public String getName_user() {
+        return name_user;
+    }
+
+    public void setName_user(String name_user) {
+        this.name_user = name_user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "\nCliente\n" +
@@ -104,6 +122,7 @@ public class Cliente {
                 "\tAPELLIDO: " + apellido_cliente + "\n" +
                 "\tTELEFONO: " + telefono_cliente + "\n" +
                 "\tCORREO ELECTRONICO: " + correo_electronico + "\n" +
+                "\tUSUARIO: " + name_user + "\n" +
                 "\tFECHA CREACION: " + fecha_creacion + "\n" +
                 "\tCuenta: " + cuenta +"\n"
                 ;
