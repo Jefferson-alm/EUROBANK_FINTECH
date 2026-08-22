@@ -78,10 +78,13 @@ public class Main {
                     break;
                 case 8 :
                     System.out.println("Consultar Saldo");
+                    metodos_cliente.check_balance();
 
                     break;
                 case 9:
                     System.out.println("Ver Movimientos");
+                    
+                    
                     break;
                 case 10 :
                     System.out.println("Consultar Cuentas");

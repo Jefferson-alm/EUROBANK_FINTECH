@@ -54,8 +54,10 @@ public class GestionarClientes {
         System.out.println("BUSCAR POR DNI: ");
         String buscar_dni = sc.next();
         int posicion = 0;
+        boolean searched = false;
         for (Cliente clientes:listaClientes){
             if(clientes.getDni_cliente().equals(buscar_dni)) {
+            	searched = true;
                 System.out.println("DNI ENCONTRADO LISTO PARA MODIFICAR");
                 int opcion;
                 do{
@@ -124,6 +126,9 @@ public class GestionarClientes {
             }else{
                 posicion++;
             }
+        }
+        if(!searched) {
+        	System.out.println("CLIENTE NO ENCONTRADO");
         }
 
         return nuevo_cliente;
@@ -239,11 +244,62 @@ public class GestionarClientes {
     }
 
     public void withdraw_money(){
-
+    	//se tiene que pedir y verificar DNI, nombre de usuario y password. 
+    	
         boolean existe = false;
-
+        
+        System.out.println("DNI: ");
+        String search_dni = sc.next();
+        boolean dni_found= false; 
+        
         for(Cliente cliente:listaClientes){
+        	
+        	if(cliente.getDni_cliente().equals(search_dni)) {
+        		System.out.println("Bienvenido " +  cliente.getNombre_cliente());
+        		
+        		System.out.println("Ingresar Usuario: ");
+        		String compare_name_user = sc.next();
+        		int errores = 0;
+        		do {
+        			
+        			if(cliente.getName_user().equals(compare_name_user)) {
 
+        				System.out.println("CONTRASEÑA: ");
+        				String compare_password = sc.next();
+        				
+        				if(cliente.getPassword().equals(compare_password)) {
+        					
+        					System.out.println("SU SALDO ES: "+ cliente.getCuenta().getSaldo());
+        					System.out.print("CANTIDAD A RETIRAR: ");
+        					double withdraw_cash = sc.nextDouble();
+        					
+        					if(withdraw_cash <= cliente.getCuenta().getSaldo()) {
+        						
+        						cliente.getCuenta().setSaldo(cliente.getCuenta().getSaldo() - withdraw_cash);
+        						
+        						System.out.println("RETIRO REALIZADO");
+        						return;
+        					}else {
+        						System.out.println("MONTO NO VALIDO");
+        					}
+        					
+        				}else {
+        					errores++;
+            				System.out.println("NRO DE INTENTOS: " +(3 - errores));
+        				}
+        				
+        				
+        			}else {
+        				errores++;
+        				System.out.println("NRO DE INTENTOS: " +(3 - errores));
+        			}
+        			
+        		}while(errores == 3 || errores == 10);
+        		if(errores == 3) {
+        			break;
+        		}
+        		
+        	}       	
 
 
         }
@@ -251,6 +307,24 @@ public class GestionarClientes {
 
     }
 
+    public void check_balance() {
+    	
+    	System.out.println("DNI CLIENTE: ");
+    	String search_customer = sc.next();
+    	
+    	boolean encontrado = false;
+    	
+    	for(Cliente cliente:listaClientes) {
+    		if(cliente.getDni_cliente().equals(search_customer)){
+    			encontrado = true;
+    			System.out.println("SU SALDO ES: " + cliente.getCuenta().getSaldo());
+    		}
+    	}
+    	if(!encontrado) {
+    		System.out.println("CLIENTE NO EXISTE");
+    	}
+    	
+    }
 
 
     @Override
